@@ -1,0 +1,15 @@
+<h2>Boilerplate-tastic</h2>
+
+<pre>
+    <code class="php" data-notrim data-noescape>
+class SimpleClass {
+    // no constructor or dependencies
+    // such simple, much wow
+}
+
+$container = new Pimple\Container();
+
+$simpleClass = $container[SimpleClass::class];
+// InvalidArgumentException because SimpleClass::class has not been defined in the container
+    </code>
+</pre>

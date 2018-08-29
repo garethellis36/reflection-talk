@@ -1,0 +1,15 @@
+<pre>
+    <code class="php" data-notrim data-noescape>
+class HandlingMethod {
+
+    public function handle(Event $event): void
+    {
+        // instantiate handler from the container
+        $handler = resolve(ltrim($this->className, "\\"));
+
+        call_user_func([$handler, $this->methodName()], $event);
+    }
+        
+}
+    </code>
+</pre>

@@ -1,0 +1,30 @@
+<pre>
+    <code class="php" data-noescape data-notrim>
+class Remote
+{
+    protected $http;
+    protected $url;
+
+    public function __construct(Guzzle $http, string $url)
+    {
+        $this->http = $http;
+        $this->url = $url;
+    }
+
+    public function __sleep()
+    {
+        return array_keys(
+            array_except(
+                get_object_vars($this),
+                'http'
+            )
+        );
+    }
+
+    public function __wakeup()
+    {
+        $this->http = new Guzzle();
+    }
+}
+    </code>
+</pre>

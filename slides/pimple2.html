@@ -1,0 +1,16 @@
+<h2>Pimple 101</h2>
+
+<pre>
+    <code class="php" data-notrim data-noescape>
+$container = new Pimple\Container();
+
+$container[MyClass::class] = function ($container) {
+
+    return new MyClass($container[SomeDependency::class]);
+};
+
+$myClass = $container[MyClass::class];
+
+// $myClass is an instance of MyClass
+    </code>
+</pre>

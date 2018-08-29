@@ -1,0 +1,6 @@
+<section data-markdown>
+    - `Handlers` is a collection of `Handler` objects built by inspecting the given path/namespace
+    - `Handler` is a class representing an event handler, exposes methods which handle events using reflection
+    - `Handler::methods()` does the magic, returns collection of `HandlingMethod` objects
+    - `HandlingMethod` has method `handle()` which uses Laravel's container to actually invoke the listener
+</section>

@@ -1,0 +1,20 @@
+<h3>With types</h3>
+
+<pre>
+    <code class="php" data-trim data-noescape>
+class SomethingHappened implements App\Event\Event
+{
+    public function usefulMethod() {}
+}
+
+class ReactToSomethingHappening implements App\Event\EventHandler
+{
+    public function __construct(Dependency $dependency) {}
+
+    public function doAThing(SomethingHappened $event)
+    {
+        $this->dependency->action($event->usefulMethod());
+    }
+}
+    </code>
+</pre>

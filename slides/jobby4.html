@@ -1,0 +1,31 @@
+<pre>
+    <code class="php" data-notrim data-noescape>
+class ScheduledTasksTest extends App\TestCase
+{
+    /**
+     * @return void
+     */
+    public function test_all_tasks_are_valid_cake_shell_commands()
+    {
+        foreach (ScheduledTasks::tasks() as $jobName => $job) {
+            $commandArgs = explode(" ", $job["command"]);
+            $class       = Inflector::camelize($commandArgs[0]) . "Shell";
+            $method      = $commandArgs[1] ?? "main";
+
+
+            $this->assertTrue(
+                class_exists($class),
+                "Failed to find class {$class}"
+            );
+
+            $reflect = new ReflectionClass($class);
+            $this->assertTrue(
+                $reflect->hasMethod($method),
+                "Failed to find method {$method} in {$class}"
+            );
+        }
+    }
+}
+
+    </code>
+</pre>

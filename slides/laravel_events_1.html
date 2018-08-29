@@ -1,0 +1,26 @@
+<h2>Laravel events</h2>
+
+<pre>
+    <code class="php" data-trim data-noescape>
+// event configuration
+class EventServiceProvider
+{
+    /**
+     * Keys: event names
+     * Values: listeners which can handle those events
+     **/
+    protected $listen = [
+        'App\Events\OrderShipped' => [
+            'App\Listeners\SendShipmentNotification',
+        ],
+    ];
+}
+
+class SendShipmentNotification {
+    public function handle($event) {}
+}
+
+// event dispatch
+event(new App\Events\OrderShipped());
+    </code>
+</pre>

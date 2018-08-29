@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Reflect yo'self before you wreck yo'self - an introduction to Reflection in PHP - Gareth Ellis</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <style type="text/css">
+        .reveal pre {
+            box-shadow: none;
+        }
+
+        .reveal pre code {
+            max-height: none !important;
+            overflow: hidden !important;
+            font-size: 0.8em;
+        }
+
+        .transparent-box {
+            border: 1px solid #ccc !important;
+            background: rgba(34, 34, 34, 0.7);
+            width: auto;
+            min-width: 70%;
+            margin: 0 auto !important;
+        }
+
+        #header {
+            font-family: "Source Sans Pro", Helvetica, sans-serif;
+            color: #fff;
+        }
+
+        #header-right {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+        }
+
+        #footer-left {
+            position: absolute;
+            bottom: 5%;
+            left: 5%;
+            font-size: 0.6em;
+        }
+
+    </style>
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+
+        <!--Intro-->
+        <section data-external="slides/cover.html"></section>
+        <section data-external="slides/doggo.html"></section>
+        <section data-external="slides/what_is_reflection.html"></section>
+        <section data-external="slides/live_demo.html"></section>
+        <section data-external="slides/what_do_we_use_it_for.html"></section>
+
+        <section data-external="slides/laravel_events_1.html"></section>
+        <section data-external="slides/laravel_events_2.html"></section>
+        <section data-external="slides/laravel_events_3.html"></section>
+        <section data-external="slides/laravel_events_4.html"></section>
+        <section data-external="slides/laravel_events_5.html"></section>
+        <section data-external="slides/laravel_events_6.html"></section>
+        <section data-external="slides/laravel_events_7.html"></section>
+        <section data-external="slides/laravel_events_8.html"></section>
+
+        <section data-external="slides/pimple1.html"></section>
+        <section data-external="slides/pimple2.html"></section>
+        <section data-external="slides/pimple3.html"></section>
+        <section data-external="slides/pimple4.html"></section>
+        <section data-external="slides/pimple5.html"></section>
+
+        <section data-external="slides/jobby1.html"></section>
+        <section data-external="slides/jobby2.html"></section>
+        <section data-external="slides/jobby3.html"></section>
+        <section data-external="slides/jobby4.html"></section>
+
+        <section data-external="slides/javascript1.html"></section>
+        <section data-external="slides/javascript2.html"></section>
+        <section data-external="slides/javascript3.html"></section>
+        <section data-external="slides/javascript4.html"></section>
+
+        <section data-external="slides/testing1.html"></section>
+        <section data-external="slides/testing2.html"></section>
+        <section data-external="slides/testing3.html"></section>
+
+        <section data-external="slides/thanks.html" data-background="img/chenonceau.jpg"></section>
+
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+<script src="js/jquery-2.2.4.min.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            {
+                src: 'plugin/external/external.js', condition: function () {
+                return !!document.querySelector('[data-external]');
+            }
+            },
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+
+//        width: "1400"
+    });
+</script>
+
+
+</body>
+</html>

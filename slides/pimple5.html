@@ -1,0 +1,32 @@
+<pre>
+    <code class="php" data-notrim data-noescape>
+class Container extends Pimple\Container
+{
+    private function resolve(string $className)
+    {
+        $reflectionClass = new ReflectionClass($className);
+        $constructor = $reflectionClass->getConstructor();
+
+        if ($constructor === null) {
+            return $reflectionClass->newInstance();
+        }
+
+        return $reflectionClass->newInstance(
+            ...array_map(function (ReflectionParameter $parameter) use ($className) {
+
+                $parameterType = $parameter->getType();
+
+                // can't auto-resolve if if it's a primitive parameter type (e.g. a string)
+                if ($parameterType === null || $this->isPrimitive($parameterType)) {
+                    throw new InvalidArgumentException(/** some message */);
+                }
+
+                // resolve from the container (calls offsetGet())
+                return $this[(string)$parameterType];
+
+            }, $constructor->getParameters())
+        );
+    }
+}
+    </code>
+</pre>

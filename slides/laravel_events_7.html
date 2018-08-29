@@ -1,0 +1,20 @@
+<pre>
+    <code class="php" data-notrim data-noescape>
+class Handler {
+
+    public function methods(): Collection
+    {
+        $reflector = new ReflectionClass($this->handlerClass);
+
+        return collect(
+            $reflector->getMethods(ReflectionMethod::IS_PUBLIC)
+        )->map(function (ReflectionMethod $method) {
+            return new HandlingMethod($this->handlerClass, $method->getName());
+        })->filter(function (HandlingMethod $method) {
+            return !is_null($method->handles());
+        });
+    }
+
+}
+    </code>
+</pre>

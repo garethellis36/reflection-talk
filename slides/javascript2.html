@@ -1,0 +1,13 @@
+<h2>Permissions in PHP</h2>
+
+<pre>
+    <code class="php" data-notrim data-noescape>
+Route::get('/projects/add', routeAction(Form::class, 'renderForm'))
+  ->name('projects.add_form')
+  ->middleware(can(ADD_NEW_PROJECT));
+    </code>
+</pre>
+
+<p>Notice the constant "ADD_NEW_PROJECT"</p>
+
+<p>What if we need the same constant in the front-end code?</p>

@@ -1,0 +1,31 @@
+<pre>
+    <code class="php" data-notrim data-noescape>
+class ScheduledTasks
+{
+    public static function tasks()
+    {
+        return [
+            "NotifyDeployedTicketsWithoutAcceptanceCriteria" => [
+                "command" => "support_ticket deployedTicketsWithoutAcceptanceCriteria",
+                "schedule" => weekly()->on("Monday"),
+            ],
+            "ExportSupplierInvoices" => [
+                "command" => "export_supplier_invoices",
+                "schedule" => weekly()
+                    ->on("Monday")
+                    ->repeatingOn("Tuesday")
+                    ->repeatingOn("Wednesday")
+                    ->repeatingOn("Thursday")
+                    ->repeatingOn("Friday")
+                    ->at("15:30"),
+            ],
+            "RandomSupplierReviews" => [
+                "command" => "select_random_suppliers_for_review",
+                "schedule" => monthly()->on("1st")->at("12"),
+            ],
+        ];
+    }
+}
+
+    </code>
+</pre>

@@ -1,0 +1,23 @@
+<h2>Inside Dispatcher</h2>
+
+<pre>
+    <code class="php" data-trim data-noescape>
+/**
+ * A map of Handlers, in the form
+ *   [HandledEvent => [HandlerOne, HandlerTwo]]
+ * @var array
+ */
+private $listeners = [];
+
+public function dispatch($event): void
+{
+    // *snipped* handling of special cases
+
+    foreach ($this->handleableTypes($event) as $type) {
+        foreach ($this->listeners[$type] as $listener) {
+            $listener->handle($event);
+        }
+    }
+}
+    </code>
+</pre>

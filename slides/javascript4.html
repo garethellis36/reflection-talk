@@ -1,0 +1,33 @@
+<pre>
+    <code class="php" data-notrim data-noescape>
+abstract class PhpFile implements Constants
+{
+    public function getConstants(): array
+    {
+        $ast = $this->parserFactory
+            ->create(ParserFactory::PREFER_PHP7)
+            ->parse($this->phpCode);
+
+        if ($ast[0] instanceof Namespace_) {
+            $statements = $ast[0]->stmts;
+        } else {
+            $statements = $ast;
+        }
+
+        return collect($statements)
+            ->filter(function ($node) {
+                return $node instanceof FuncCall;
+            })
+            ->filter(function (FuncCall $funcCall) {
+                return $funcCall->name->parts["0"] === "define";
+            })
+            ->mapWithKeys(function (FuncCall $funcCall) {
+                return [
+                    $funcCall->args[0]->value->value => $funcCall->args[1]->value->value,
+                ];
+            })
+            ->toArray();
+    }
+}
+    </code>
+</pre>

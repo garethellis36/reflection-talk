@@ -1,0 +1,23 @@
+<pre>
+    <code class="php" data-noescape data-notrim>
+class RemoteTest extends AppTestCase
+{
+    /**
+     * @test
+     * @covers Remote::__wakeup
+     */
+    public function it_can_be_unserialized_and_guzzle_instance_is_there()
+    {
+        $remote = new Remote(new Guzzle(), '/foo/bar');
+        $serialized = serialize($remote);
+        $remote = unserialize($serialized);
+
+        $reflected = new ReflectionClass(Remote::class);
+        $guzzle = $reflected->getProperty("http");
+        $guzzle->setAccessible(true);
+
+        assertThat($guzzle->getValue($remote), is(anInstanceOf(Guzzle::class)));
+    }
+}
+    </code>
+</pre>

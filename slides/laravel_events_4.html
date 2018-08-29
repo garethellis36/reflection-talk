@@ -1,0 +1,25 @@
+<pre>
+    <code class="php" data-trim data-noescape>
+
+class EventServiceProvider extends ServiceProvider
+{
+    protected $listen = [];
+
+    public function boot()
+    {
+        $path = app()->basePath('app/Events/Handlers');
+        $dispatcher = new Dispatcher(
+            new Handlers([
+                '\\App\\Events\\Handlers' => $path,
+            ])
+        );
+
+        \Event::listen('*', function ($event) use ($dispatcher) {
+            $dispatcher->dispatch($event);
+        });
+
+        parent::boot();
+    }
+}
+    </code>
+</pre>

@@ -1,0 +1,22 @@
+<pre>
+    <code class="php" data-notrim data-noescape>
+class Container extends Pimple\Container
+{
+    public function offsetGet($serviceName)
+    {
+        try {
+            // get explicitly defined services by default
+            return parent::offsetGet($serviceName);
+        } catch (InvalidArgumentException $e) {
+
+            // try to auto-resolve the service if possible
+            if (!class_exists($serviceName)) {
+                throw $e;
+            }
+
+            return $this->resolve($serviceName);
+        }
+    }
+}
+    </code>
+</pre>
